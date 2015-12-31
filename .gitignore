@@ -45,3 +45,8 @@ Thumbs.db
 
 # Sandbox stuff
 _sandbox
+
+# Ignored by aningsk:
+.classpath
+.project
+project.properties
