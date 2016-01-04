@@ -45,3 +45,6 @@ Thumbs.db
 
 # Sandbox stuff
 _sandbox
+
+# Ignored by aningsk:
+tags

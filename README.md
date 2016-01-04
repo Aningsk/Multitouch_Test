@@ -1,3 +1,15 @@
+#Multitouch Test (Version 1.0) 
+This project is forked by Aningsk.
+I will change it for my requirements, and comply with Apache License Version 2.0
+
+##Version Mark 
+* 1.0 (2016-01-04)
+    I can build the project and run it in AVD.
+    Until now, I don't try run it on a reality Android device.
+    This APP could show the orignal functions developed by Leonardocardoso.
+
+***
+The orignal README.md as follows:
 Multitouch Test
 =====================
 

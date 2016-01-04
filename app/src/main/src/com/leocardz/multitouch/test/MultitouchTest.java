@@ -13,9 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
 @SuppressLint("NewApi")
 public class MultitouchTest extends ActionBarActivity {
@@ -36,7 +34,7 @@ public class MultitouchTest extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-
+/* Aningsk remove this if-else 2016-01-04.
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -46,7 +44,7 @@ public class MultitouchTest extends ActionBarActivity {
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
-
+*/
         setMetrics();
 
         centerMessage = getString(R.string.center_message);
