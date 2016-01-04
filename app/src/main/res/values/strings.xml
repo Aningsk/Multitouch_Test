@@ -8,12 +8,14 @@
     <string name="options">Options</string>
     <string name="center_message">Touch</string>
     <string name="color_changing">Random Colors</string>
+    <string name="menu">Menu</string>
     <string name="lines">Lines</string>
     <string name="number_showing">Numbers</string>
     <string name="coordinates">Coordinates</string>
     <string name="shadows">Shadows</string>
     <string name="rings">Rings</string>
     <string name="vibration">Vibration</string>
+    <string name="draw">Draw</string>
     <string name="density_menu">Density</string>
     <string name="density_text">Screen density:</string>
     <string name="update_button">Update</string>
