@@ -1,3 +1,9 @@
+Multitouch Test 
+=====================
+This project is forked by Aningsk.
+I will change it for my requirements, and comply with Apache License Version 2.0
+
+The orignel README.md as follows:
 Multitouch Test
 =====================
 
