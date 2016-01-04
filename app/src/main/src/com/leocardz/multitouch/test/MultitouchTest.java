@@ -20,7 +20,7 @@ public class MultitouchTest extends ActionBarActivity {
     static int screenHeight, screenWidth, screenDensity;
     int androidVersion = Build.VERSION.SDK_INT;
     static int lines = 1, rings = 0, colorChanging = 0, numberShowing = 1,
-            coordinates = 0, density = 1, vibration = 1;
+            coordinates = 0, density = 1, vibration = 1, draw = 0;
     static String densityText, centerMessage, currentTouches;
     public static String APP_SHARED_PREFS = "com.leocardz.multitouch.test.Preferences";
     public static SharedPreferences preferences, settings, getPreference;
@@ -103,6 +103,9 @@ public class MultitouchTest extends ActionBarActivity {
 
         if (rings == 1)
             menu.findItem(R.id.rings).setChecked(true);
+        
+        if (draw == 1)
+        	menu.findItem(R.id.draw).setChecked(true);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -169,6 +172,13 @@ public class MultitouchTest extends ActionBarActivity {
                     rings = 0;
                 item.setChecked(!item.isChecked());
                 break;
+            case R.id.draw:
+            	if (!item.isChecked())
+            		draw = 1;
+            	else
+            		draw = 0;
+            	item.setChecked(!item.isChecked());
+            	break;
         }
         savePrefs();
         return super.onOptionsItemSelected(item);
@@ -213,6 +223,7 @@ public class MultitouchTest extends ActionBarActivity {
         editor.putInt("vibration", vibration);
         editor.putInt("colorChanging", colorChanging);
         editor.putInt("rings", rings);
+        editor.putInt("draw", draw);
 
         editor.commit();
     }
@@ -228,6 +239,7 @@ public class MultitouchTest extends ActionBarActivity {
         vibration = getPreference.getInt("vibration", vibration);
         colorChanging = getPreference.getInt("colorChanging", colorChanging);
         rings = getPreference.getInt("rings", rings);
+        draw = getPreference.getInt("draw", draw);
 
         super.onResume();
     }
