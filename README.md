@@ -7,6 +7,7 @@ I will change it for my requirements, and comply with Apache License Version 2.0
     I can build the project and run it in AVD.
     Until now, I don't try run it on a reality Android device.
     This APP could show the orignal functions developed by Leonardocardoso.
+    And I revonated AndroidManifest.xml.
 
 ***
 The orignal README.md as follows:
