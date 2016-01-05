@@ -11,11 +11,21 @@ import android.view.View;
 public class MultiTouch extends View {
     static int r = 0, g = 0, b = 0, radius = 40, outerRadius = radius + 10,
             outerOuterRadius = radius + 20, currentTotal = 0;
+    static int colorPoolR[] = {000, 000, 000, 255, 255, 206, 255, 000, 126, 126, 
+							   000, 000, 000, 255, 255, 206, 255, 000, 126, 126};
+    static int colorPoolG[] = {246, 000, 255, 000, 162, 206, 240, 255, 255, 000, 
+							   246, 000, 255, 000, 102, 206, 240, 255, 255, 000};
+    static int colorPoolB[] = {255, 255, 000, 000, 000, 206, 000, 216, 000, 255, 
+							   255, 255, 000, 000, 000, 206, 000, 216, 000, 255};
     private final int TOUCHS = 30;
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint numberPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint messagePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    int draw_line = 0;
+    float[] x0 = new float[TOUCHS];
+    float[] y0 = new float[TOUCHS];
     float[] x = new float[TOUCHS];
     float[] y = new float[TOUCHS];
     float[] startX1 = new float[TOUCHS], startY1 = new float[TOUCHS],
@@ -40,6 +50,8 @@ public class MultiTouch extends View {
         messagePaint.setStyle(Paint.Style.FILL);
         messagePaint.setTextSize(MultitouchTest.screenDensity / 10);
 
+        linePaint.setStrokeCap(Paint.Cap.ROUND);
+        linePaint.setStrokeWidth(5);
     }
 
     public MultiTouch(Context context, AttributeSet attrs) {
@@ -66,113 +78,12 @@ public class MultiTouch extends View {
         for (int i = 0; i < isTouch.length; i++) {
             if (isTouch[i]) {
                 counting++;
-                if (MultitouchTest.colorChanging == 1)
+                if (MultitouchTest.colorChanging == 1) {
                     randColor();
-                else {
-                    switch (i) {
-                        case 0:
-                            r = 0;
-                            g = 246;
-                            b = 255;
-                            break;
-                        case 1:
-                            r = 0;
-                            g = 0;
-                            b = 255;
-                            break;
-                        case 2:
-                            r = 0;
-                            g = 255;
-                            b = 0;
-                            break;
-                        case 3:
-                            r = 255;
-                            g = 0;
-                            b = 0;
-                            break;
-                        case 4:
-                            r = 255;
-                            g = 162;
-                            b = 0;
-                            break;
-                        case 5:
-                            r = 206;
-                            g = 206;
-                            b = 206;
-                            break;
-                        case 6:
-                            r = 255;
-                            g = 240;
-                            b = 0;
-                            break;
-                        case 7:
-                            r = 0;
-                            g = 255;
-                            b = 216;
-                            break;
-                        case 8:
-                            r = 126;
-                            g = 255;
-                            b = 0;
-                            break;
-                        case 9:
-                            r = 126;
-                            g = 0;
-                            b = 255;
-                            break;
-                        case 10:
-                            r = 0;
-                            g = 246;
-                            b = 255;
-                            break;
-                        case 11:
-                            r = 0;
-                            g = 0;
-                            b = 255;
-                            break;
-                        case 12:
-                            r = 0;
-                            g = 255;
-                            b = 0;
-                            break;
-                        case 13:
-                            r = 255;
-                            g = 0;
-                            b = 0;
-                            break;
-                        case 14:
-                            r = 255;
-                            g = 102;
-                            b = 0;
-                            break;
-                        case 15:
-                            r = 206;
-                            g = 206;
-                            b = 206;
-                            break;
-                        case 16:
-                            r = 255;
-                            g = 240;
-                            b = 0;
-                            break;
-                        case 17:
-                            r = 0;
-                            g = 255;
-                            b = 216;
-                            break;
-                        case 18:
-                            r = 126;
-                            g = 255;
-                            b = 0;
-                            break;
-                        case 19:
-                            r = 126;
-                            g = 0;
-                            b = 255;
-                            break;
-                        default:
-                            break;
-                    }
+                } else {
+                	r = colorPoolR[i];
+                	g = colorPoolG[i];
+                	b = colorPoolB[i];
                 }
                 paint.setStrokeWidth(1);
                 paint.setStyle(Paint.Style.FILL);
@@ -200,25 +111,26 @@ public class MultiTouch extends View {
                             + String.valueOf((int) y[i]) + "]";
                     add = 20;
 
-                    if (MultitouchTest.numberShowing == 1) {
-                        canvas.drawText(String.valueOf(i + 1) + ": "
-                                        + additional, x[i] - 50, y[i] - 50 - add,
-                                numberPaint
-                        );
-                    } else {
-                        canvas.drawText((String) additional, x[i] - 50, y[i]
-                                - 50 - add, numberPaint);
-                    }
+                    if (MultitouchTest.numberShowing == 1) 
+                        canvas.drawText(String.valueOf(i + 1) + ": " + additional, 
+                        				x[i] - 50, y[i] - 50 - add, numberPaint);
+                    else 
+                        canvas.drawText((String) additional, 
+                        				x[i] - 50, y[i] - 50 - add, numberPaint);
                 } else {
                     additional = "";
                     add = 0;
 
-                    if (MultitouchTest.numberShowing == 1) {
-                        canvas.drawText(String.valueOf(i + 1), x[i] - 50, y[i]
-                                - 50 - add, numberPaint);
-                    }
+                    if (MultitouchTest.numberShowing == 1) 
+                        canvas.drawText(String.valueOf(i + 1),
+                        				x[i] - 50, y[i] - 50 - add, numberPaint);
                 }
-
+                
+                if (MultitouchTest.draw == 1 && draw_line == 1) {
+                	linePaint.setARGB(255, r, g, b);
+                	canvas.drawLine(x0[i], y0[i], x[i], y[i], linePaint);
+                }
+                
             }
         }
 
@@ -250,8 +162,7 @@ public class MultiTouch extends View {
                 + ": " + counting;
         messageDensity = messagePaint.measureText(currentTouches);
         canvas.drawText(currentTouches,
-                (MultitouchTest.screenWidth - messageDensity) / 2, 40f,
-                messagePaint);
+                (MultitouchTest.screenWidth - messageDensity) / 2, 40f, messagePaint);
     }
 
     @Override
@@ -267,9 +178,17 @@ public class MultiTouch extends View {
             if (pointerIndex <= TOUCHS - 1) {
                 for (int i = 0; i < pointCnt; i++) {
                     int id = motionEvent.getPointerId(i);
+                    if (x0[id] == x[id] && y0[id] == y[id]) 
+                    	draw_line = 0;
+                    else
+                    	draw_line = 1;
+                    if (draw_line == 1) {
+                    	x0[id] = x[id];
+                    	y0[id] = y[id];
+                    }
                     x[id] = (int) motionEvent.getX(i);
                     y[id] = (int) motionEvent.getY(i);
-
+                    
                     startX1[id] = motionEvent.getX(i);
                     startY1[id] = 0;
                     stopX1[id] = motionEvent.getX(i);
@@ -317,4 +236,5 @@ public class MultiTouch extends View {
             b = (int) (Math.random() * 255);
         } while (r == 0 && g == 0 && b == 0);
     }
+
 }
