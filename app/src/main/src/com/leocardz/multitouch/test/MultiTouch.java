@@ -23,7 +23,7 @@ public class MultiTouch extends View {
     private Paint numberPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint messagePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    int draw_line = 0;
+    boolean start_draw = false;
     float[] x0 = new float[TOUCHS];
     float[] y0 = new float[TOUCHS];
     float[] x = new float[TOUCHS];
@@ -126,7 +126,7 @@ public class MultiTouch extends View {
                         				x[i] - 50, y[i] - 50 - add, numberPaint);
                 }
                 
-                if (MultitouchTest.draw == 1 && draw_line == 1) {
+                if (MultitouchTest.draw == 1 && start_draw) {
                 	linePaint.setARGB(255, r, g, b);
                 	canvas.drawLine(x0[i], y0[i], x[i], y[i], linePaint);
                 }
@@ -179,10 +179,10 @@ public class MultiTouch extends View {
                 for (int i = 0; i < pointCnt; i++) {
                     int id = motionEvent.getPointerId(i);
                     if (x0[id] == x[id] && y0[id] == y[id]) 
-                    	draw_line = 0;
+                    	start_draw = false;
                     else
-                    	draw_line = 1;
-                    if (draw_line == 1) {
+                    	start_draw = true;
+                    if (start_draw) {
                     	x0[id] = x[id];
                     	y0[id] = y[id];
                     }
