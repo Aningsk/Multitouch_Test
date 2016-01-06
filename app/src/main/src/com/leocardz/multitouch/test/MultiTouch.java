@@ -1,10 +1,12 @@
 package com.leocardz.multitouch.test;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Vibrator;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -23,6 +25,7 @@ public class MultiTouch extends View {
     private Paint numberPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint messagePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Line[] lines = new Line[TOUCHS];
     boolean start_draw = false;
     float[] x0 = new float[TOUCHS];
     float[] y0 = new float[TOUCHS];
@@ -52,6 +55,9 @@ public class MultiTouch extends View {
 
         linePaint.setStrokeCap(Paint.Cap.ROUND);
         linePaint.setStrokeWidth(5);
+        
+        for (int i = 0; i < TOUCHS; i++)
+        	lines[i] = new Line();
     }
 
     public MultiTouch(Context context, AttributeSet attrs) {
@@ -128,7 +134,7 @@ public class MultiTouch extends View {
                 
                 if (MultitouchTest.draw == 1 && start_draw) {
                 	linePaint.setARGB(255, r, g, b);
-                	canvas.drawLine(x0[i], y0[i], x[i], y[i], linePaint);
+                	draw_line(lines[i], canvas, linePaint);
                 }
                 
             }
@@ -154,6 +160,8 @@ public class MultiTouch extends View {
                         messagePaint
                 );
             }
+            for (int i = 0; i < TOUCHS; i++)
+            	lines[i].clearLine();
         } else if (MultitouchTest.ab.isShowing()) {
             MultitouchTest.ab.hide();
         }
@@ -188,6 +196,7 @@ public class MultiTouch extends View {
                     }
                     x[id] = (int) motionEvent.getX(i);
                     y[id] = (int) motionEvent.getY(i);
+                    lines[id].setPoint(x[id], y[id]);
                     
                     startX1[id] = motionEvent.getX(i);
                     startY1[id] = 0;
@@ -229,6 +238,29 @@ public class MultiTouch extends View {
         return true;
     }
 
+    @SuppressLint("UseValueOf")
+	public void draw_line(Line line, Canvas canvas, Paint linePaint) {
+    	float x0, y0, x1, y1;
+    	int index = line.getIndex();
+    	Line.Point point;
+    	line.setIndexToMax();
+    	Log.i("draw_line", "index=" + (new Integer(index)).toString());
+    	while (index > 0) {
+    		line.setIndexToMax();
+    		point = line.getPoint(index);
+    		x0 = point.getX();
+    		y0 = point.getY();
+    		index--;
+    		point = line.getPoint(index);
+    		x1 = point.getX();
+    		y1 = point.getY();
+	    	if (x0 == -1f && y0 == -1f || x1 == -1f && y1 == -1f)
+	    		break;
+	    	canvas.drawLine(x0, y0, x1, y1, linePaint);
+    	}
+    	
+    }
+    
     public void randColor() {
         do {
             r = (int) (Math.random() * 255);
