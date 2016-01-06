@@ -4,6 +4,7 @@
     <item
         android:id="@+id/options"
         android:icon="@drawable/ic_settings"
+        android:title="@string/menu"
         app:showAsAction="always">
         <menu>
             <item
@@ -34,6 +35,10 @@
                 android:id="@+id/vibration"
                 android:checkable="true"
                 android:title="@string/vibration" />
+            <item 
+                android:id="@+id/draw"
+                android:checkable="true"
+                android:title="@string/draw"/>
         </menu>
     </item>
 
