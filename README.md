@@ -1,8 +1,11 @@
-#Multitouch Test (Version 1.0) 
+#Multitouch Test (Version 1.1) 
 This project is forked by Aningsk.
 I will change it for my requirements, and comply with Apache License Version 2.0
 
 ##Version Mark 
+* 1.1 (2016-01-06)
+    Now version-1.1 can draw line, and I test it successfully on real Android device.
+    I add a Java Class named as "Line", and Multitouch.java had been changed.
 * 1.0 (2016-01-04)
     I can build the project and run it in AVD.
     Until now, I don't try run it on a reality Android device.
