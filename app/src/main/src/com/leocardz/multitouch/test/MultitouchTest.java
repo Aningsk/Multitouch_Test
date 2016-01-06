@@ -20,7 +20,7 @@ public class MultitouchTest extends ActionBarActivity {
     static int screenHeight, screenWidth, screenDensity;
     int androidVersion = Build.VERSION.SDK_INT;
     static boolean lines = true, rings = false, colorChanging = false, numberShowing = true,
-            coordinates = false, density = true, vibration = true, draw = false;
+            coordinates = false, density = true, vibration = false, draw = false;
     static String densityText, centerMessage, currentTouches;
     public static String APP_SHARED_PREFS = "com.leocardz.multitouch.test.Preferences";
     public static SharedPreferences preferences, settings, getPreference;
