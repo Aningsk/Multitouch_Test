@@ -19,8 +19,8 @@ import android.view.Window;
 public class MultitouchTest extends ActionBarActivity {
     static int screenHeight, screenWidth, screenDensity;
     int androidVersion = Build.VERSION.SDK_INT;
-    static int lines = 1, rings = 0, colorChanging = 0, numberShowing = 1,
-            coordinates = 0, density = 1, vibration = 1, draw = 0;
+    static boolean lines = true, rings = false, colorChanging = false, numberShowing = true,
+            coordinates = false, density = true, vibration = true, draw = false;
     static String densityText, centerMessage, currentTouches;
     public static String APP_SHARED_PREFS = "com.leocardz.multitouch.test.Preferences";
     public static SharedPreferences preferences, settings, getPreference;
@@ -83,28 +83,28 @@ public class MultitouchTest extends ActionBarActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
-        if (lines == 1)
+        if (lines)
             menu.findItem(R.id.lines).setChecked(true);
 
-        if (draw == 1)
+        if (draw)
         	menu.findItem(R.id.draw).setChecked(true);
 
-        if (numberShowing == 1)
+        if (numberShowing)
             menu.findItem(R.id.number_showing).setChecked(true);
 
-        if (coordinates == 1)
+        if (coordinates)
             menu.findItem(R.id.coordinates).setChecked(true);
         
-        if (rings == 1)
+        if (rings)
             menu.findItem(R.id.rings).setChecked(true);
         
-        if (density == 1)
+        if (density)
             menu.findItem(R.id.density_menu).setChecked(true);
 
-        if (colorChanging == 1)
+        if (colorChanging)
             menu.findItem(R.id.color_changing).setChecked(true);
         
-        if (vibration == 1)
+        if (vibration)
             menu.findItem(R.id.vibration).setChecked(true);
 
         return super.onPrepareOptionsMenu(menu);
@@ -124,59 +124,59 @@ public class MultitouchTest extends ActionBarActivity {
                 break;
             case R.id.lines:
                 if (!item.isChecked())
-                    lines = 1;
+                    lines = true;
                 else
-                    lines = 0;
+                    lines = false;
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.coordinates:
                 if (!item.isChecked())
-                    coordinates = 1;
+                    coordinates = true;
                 else
-                    coordinates = 0;
+                    coordinates = false;
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.number_showing:
                 if (!item.isChecked())
-                    numberShowing = 1;
+                    numberShowing = true;
                 else
-                    numberShowing = 0;
+                    numberShowing = false;
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.density_menu:
                 if (!item.isChecked())
-                    density = 1;
+                    density = true;
                 else
-                    density = 0;
+                    density = false;
                 mv.invalidate();
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.color_changing:
                 if (!item.isChecked())
-                    colorChanging = 1;
+                    colorChanging = true;
                 else
-                    colorChanging = 0;
+                    colorChanging = false;
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.vibration:
                 if (!item.isChecked())
-                    vibration = 1;
+                    vibration = true;
                 else
-                    vibration = 0;
+                    vibration = false;
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.rings:
                 if (!item.isChecked())
-                    rings = 1;
+                    rings = true;
                 else
-                    rings = 0;
+                    rings = false;
                 item.setChecked(!item.isChecked());
                 break;
             case R.id.draw:
             	if (!item.isChecked())
-            		draw = 1;
+            		draw = true;
             	else
-            		draw = 0;
+            		draw = false;
             	item.setChecked(!item.isChecked());
             	break;
         }
@@ -216,14 +216,14 @@ public class MultitouchTest extends ActionBarActivity {
         settings = getSharedPreferences(APP_SHARED_PREFS, 0);
         editor = settings.edit();
 
-        editor.putInt("lines", lines);
-        editor.putInt("coordinates", coordinates);
-        editor.putInt("numberShowing", numberShowing);
-        editor.putInt("density", density);
-        editor.putInt("vibration", vibration);
-        editor.putInt("colorChanging", colorChanging);
-        editor.putInt("rings", rings);
-        editor.putInt("draw", draw);
+        editor.putBoolean("lines", lines);
+        editor.putBoolean("coordinates", coordinates);
+        editor.putBoolean("numberShowing", numberShowing);
+        editor.putBoolean("density", density);
+        editor.putBoolean("vibration", vibration);
+        editor.putBoolean("colorChanging", colorChanging);
+        editor.putBoolean("rings", rings);
+        editor.putBoolean("draw", draw);
 
         editor.commit();
     }
@@ -232,14 +232,14 @@ public class MultitouchTest extends ActionBarActivity {
     public void onResume() {
         getPreference = getSharedPreferences(APP_SHARED_PREFS, 0);
 
-        lines = getPreference.getInt("lines", lines);
-        coordinates = getPreference.getInt("coordinates", coordinates);
-        numberShowing = getPreference.getInt("numberShowing", numberShowing);
-        density = getPreference.getInt("density", density);
-        vibration = getPreference.getInt("vibration", vibration);
-        colorChanging = getPreference.getInt("colorChanging", colorChanging);
-        rings = getPreference.getInt("rings", rings);
-        draw = getPreference.getInt("draw", draw);
+        lines = getPreference.getBoolean("lines", lines);
+        coordinates = getPreference.getBoolean("coordinates", coordinates);
+        numberShowing = getPreference.getBoolean("numberShowing", numberShowing);
+        density = getPreference.getBoolean("density", density);
+        vibration = getPreference.getBoolean("vibration", vibration);
+        colorChanging = getPreference.getBoolean("colorChanging", colorChanging);
+        rings = getPreference.getBoolean("rings", rings);
+        draw = getPreference.getBoolean("draw", draw);
 
         super.onResume();
     }
