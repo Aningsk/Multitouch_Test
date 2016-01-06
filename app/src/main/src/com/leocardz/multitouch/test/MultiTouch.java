@@ -1,12 +1,10 @@
 package com.leocardz.multitouch.test;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Vibrator;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -19,16 +17,14 @@ public class MultiTouch extends View {
 							   246, 000, 255, 000, 102, 206, 240, 255, 255, 000};
     static int colorPoolB[] = {255, 255, 000, 000, 000, 206, 000, 216, 000, 255, 
 							   255, 255, 000, 000, 000, 206, 000, 216, 000, 255};
-    private final int TOUCHS = 30;
+    private final int TOUCHS = 20;
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint numberPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint messagePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    
     private Line[] lines = new Line[TOUCHS];
-    boolean start_draw = false;
-    float[] x0 = new float[TOUCHS];
-    float[] y0 = new float[TOUCHS];
     float[] x = new float[TOUCHS];
     float[] y = new float[TOUCHS];
     float[] startX1 = new float[TOUCHS], startY1 = new float[TOUCHS],
@@ -132,7 +128,7 @@ public class MultiTouch extends View {
                         				x[i] - 50, y[i] - 50 - add, numberPaint);
                 }
                 
-                if (MultitouchTest.draw == 1 && start_draw) {
+                if (MultitouchTest.draw == 1) {
                 	linePaint.setARGB(255, r, g, b);
                 	draw_line(lines[i], canvas, linePaint);
                 }
@@ -186,14 +182,7 @@ public class MultiTouch extends View {
             if (pointerIndex <= TOUCHS - 1) {
                 for (int i = 0; i < pointCnt; i++) {
                     int id = motionEvent.getPointerId(i);
-                    if (x0[id] == x[id] && y0[id] == y[id]) 
-                    	start_draw = false;
-                    else
-                    	start_draw = true;
-                    if (start_draw) {
-                    	x0[id] = x[id];
-                    	y0[id] = y[id];
-                    }
+
                     x[id] = (int) motionEvent.getX(i);
                     y[id] = (int) motionEvent.getY(i);
                     lines[id].setPoint(x[id], y[id]);
@@ -238,13 +227,11 @@ public class MultiTouch extends View {
         return true;
     }
 
-    @SuppressLint("UseValueOf")
 	public void draw_line(Line line, Canvas canvas, Paint linePaint) {
     	float x0, y0, x1, y1;
     	int index = line.getIndex();
     	Line.Point point;
-    	line.setIndexToMax();
-    	Log.i("draw_line", "index=" + (new Integer(index)).toString());
+    	
     	while (index > 0) {
     		line.setIndexToMax();
     		point = line.getPoint(index);
