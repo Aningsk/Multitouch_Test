@@ -86,26 +86,26 @@ public class MultitouchTest extends ActionBarActivity {
         if (lines == 1)
             menu.findItem(R.id.lines).setChecked(true);
 
-        if (coordinates == 1)
-            menu.findItem(R.id.coordinates).setChecked(true);
+        if (draw == 1)
+        	menu.findItem(R.id.draw).setChecked(true);
 
         if (numberShowing == 1)
             menu.findItem(R.id.number_showing).setChecked(true);
 
-        if (density == 1)
-            menu.findItem(R.id.density_menu).setChecked(true);
-
-        if (vibration == 1)
-            menu.findItem(R.id.vibration).setChecked(true);
-
-        if (colorChanging == 1)
-            menu.findItem(R.id.color_changing).setChecked(true);
-
+        if (coordinates == 1)
+            menu.findItem(R.id.coordinates).setChecked(true);
+        
         if (rings == 1)
             menu.findItem(R.id.rings).setChecked(true);
         
-        if (draw == 1)
-        	menu.findItem(R.id.draw).setChecked(true);
+        if (density == 1)
+            menu.findItem(R.id.density_menu).setChecked(true);
+
+        if (colorChanging == 1)
+            menu.findItem(R.id.color_changing).setChecked(true);
+        
+        if (vibration == 1)
+            menu.findItem(R.id.vibration).setChecked(true);
 
         return super.onPrepareOptionsMenu(menu);
     }
