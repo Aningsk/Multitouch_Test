@@ -80,7 +80,7 @@ public class MultiTouch extends View {
         for (int i = 0; i < isTouch.length; i++) {
             if (isTouch[i]) {
                 counting++;
-                if (MultitouchTest.colorChanging == 1) {
+                if (MultitouchTest.colorChanging) {
                     randColor();
                 } else {
                 	r = colorPoolR[i];
@@ -90,7 +90,7 @@ public class MultiTouch extends View {
                 paint.setStrokeWidth(1);
                 paint.setStyle(Paint.Style.FILL);
 
-                if (MultitouchTest.rings == 1) {
+                if (MultitouchTest.rings) {
                     paint.setARGB(255, r, g, b);
                     canvas.drawCircle(x[i], y[i], outerOuterRadius, paint);
 
@@ -101,19 +101,19 @@ public class MultiTouch extends View {
                 paint.setARGB(255, r, g, b);
                 canvas.drawCircle(x[i], y[i], radius, paint);
 
-                if (MultitouchTest.lines == 1) {
+                if (MultitouchTest.lines) {
                     canvas.drawLine(startX1[i], startY1[i], stopX1[i],
                             stopY1[i], paint);
                     canvas.drawLine(startX2[i], startY2[i], stopX2[i],
                             stopY2[i], paint);
                 }
 
-                if (MultitouchTest.coordinates == 1) {
+                if (MultitouchTest.coordinates) {
                     additional = "[x: " + String.valueOf((int) x[i]) + ", y: "
                             + String.valueOf((int) y[i]) + "]";
                     add = 20;
 
-                    if (MultitouchTest.numberShowing == 1) 
+                    if (MultitouchTest.numberShowing) 
                         canvas.drawText(String.valueOf(i + 1) + ": " + additional, 
                         				x[i] - 50, y[i] - 50 - add, numberPaint);
                     else 
@@ -123,12 +123,12 @@ public class MultiTouch extends View {
                     additional = "";
                     add = 0;
 
-                    if (MultitouchTest.numberShowing == 1) 
+                    if (MultitouchTest.numberShowing) 
                         canvas.drawText(String.valueOf(i + 1),
                         				x[i] - 50, y[i] - 50 - add, numberPaint);
                 }
                 
-                if (MultitouchTest.draw == 1) {
+                if (MultitouchTest.draw) {
                 	linePaint.setARGB(255, r, g, b);
                 	draw_line(lines[i], canvas, linePaint);
                 }
@@ -145,7 +145,7 @@ public class MultiTouch extends View {
                     (MultitouchTest.screenWidth - messageWidth) / 2,
                     MultitouchTest.screenHeight / 2, messagePaint);
 
-            if (MultitouchTest.density == 1) {
+            if (MultitouchTest.density) {
                 messageDensity = messagePaint
                         .measureText(MultitouchTest.densityText + " "
                                 + MultitouchTest.screenDensity + "dpi");
@@ -206,13 +206,13 @@ public class MultiTouch extends View {
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_POINTER_DOWN:
-                        if (MultitouchTest.vibration == 1) {
+                        if (MultitouchTest.vibration) {
                             Vibrator v = (Vibrator) context
                                     .getSystemService(Context.VIBRATOR_SERVICE);
                             v.vibrate(25);
                         }
 
-                        if (MultitouchTest.colorChanging == 0)
+                        if (MultitouchTest.colorChanging)
                             randColor();
                     case MotionEvent.ACTION_MOVE:
                         isTouch[pointerId] = true;
