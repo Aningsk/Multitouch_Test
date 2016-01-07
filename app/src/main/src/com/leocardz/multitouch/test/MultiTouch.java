@@ -245,7 +245,6 @@ public class MultiTouch extends View {
 	    		break;
 	    	canvas.drawLine(x0, y0, x1, y1, linePaint);
     	}
-    	
     }
     
     public void randColor() {
