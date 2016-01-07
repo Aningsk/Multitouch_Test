@@ -1,8 +1,27 @@
-#Multitouch Test (Version 1.1.1) 
-This project is forked by Aningsk.
+#Multitouch Test (Version 1.1.2) 
+This project is forked by Aningsk from <a href='https://github.com/LeonardoCardoso' target='_blank'>@LeonardoCardoso</a>. 
+Thanks Leocardz very much~!
 I will change it for my requirements, and comply with Apache License Version 2.0
 
+##Description
+The project is used to test Android device multitouch function. 
+I add a feature that make the APP can draw lines following fingers' movement.
+
+I use ADT(eclipse) to develop this project. 
+And run it on Android-4.2.2, Android-4.4.2 and Android-4.4.3 (I don't test it on other Android versions.)
+
+* Android Developer Tools 
+    Build:v22.6.2-1085508
+    with supported by "**android-support-v7-appcompat**"
+
+That is very very difficult to get ADT and some support library, since Google had been **GFWed**... 
+I'm a Chinese newbie programmer without any VPN @\_@
+
 ##Version Mark 
+* 1.1.2 (2016-01-07)
+    Renovate the Class Line.
+    Actually, I cannot feel any difference while the APP is running.
+    But I wanna write more graceful code.
 * 1.1.1 (2016-01-06)
     Adjust menu, and change default value.
     The datum saved for the APP will be fewer.
