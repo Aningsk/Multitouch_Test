@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="initials" translatable="false" />
+    <string name="empty" translatable="false" />
+    <string name="app_name">多点触控测试</string>
+    <string name="exit_application">退出</string>
+    <string name="options">选项</string>
+    <string name="center_message">点击屏幕</string>
+    <string name="color_changing">颜色随机</string>
+    <string name="menu">菜单</string>
+    <string name="lines">显示坐标线</string>
+    <string name="number_showing">显示编号</string>
+    <string name="coordinates">显示坐标值</string>
+    <string name="shadows">阴影</string>
+    <string name="rings">显示修饰环</string>
+    <string name="vibration">触发震动</string>
+    <string name="draw">绘制轨迹</string>
+    <string name="density_menu">显示分辨率</string>
+    <string name="density_text">屏幕分辨率：</string>
+    <string name="update_button">升级</string>
+    <string name="cancel_button">取消</string>
+    <string name="current_touches">当前触摸数量</string>
+
+</resources>
