@@ -1,4 +1,4 @@
-#Multitouch Test (Version 1.1.2) 
+#Multitouch Test (Version 1.1.3) 
 This project is forked by Aningsk from <a href='https://github.com/LeonardoCardoso' target='_blank'>@LeonardoCardoso</a>. 
 Thanks Leocardz very much~!
 I will change it for my requirements, and comply with Apache License Version 2.0
@@ -18,6 +18,8 @@ That is very very difficult to get ADT and some support library, since Google ha
 I'm a Chinese newbie programmer without any VPN @\_@
 
 ##Version Mark 
+* 1.1.3 (2016-01-07)
+    Support Simplified Chinese Language.
 * 1.1.2 (2016-01-07)
     Renovate the Class Line.
     Actually, I cannot feel any difference while the APP is running.
